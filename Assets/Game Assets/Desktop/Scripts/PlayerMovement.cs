@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region COMPONENTS
     public Rigidbody2D rb { get; private set; }
+    public Animator animator;
     #endregion
 
     #region STATE PARAMETERS
@@ -21,7 +22,13 @@ public class PlayerMovement : MonoBehaviour
     InputAction jumpAction;
     InputAction moveAction;
 
-    private Vector2 moveInput;
+    /// <summary>
+    InputAction happyAction;
+    InputAction angryAction;
+    InputAction eatAction;
+    /// //////////////////////////////////////////////
+
+    public Vector2 moveInput { get; private set; }
     public float JumpInputBufferLeft {  get; private set; }
     public float CoyoteBufferLeft { get; private set; }
     private float MultiJumpsLeft;
@@ -41,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     private void OnEnable() {
         m_ActionAsset.FindActionMap("Player").Enable();
@@ -49,12 +57,25 @@ public class PlayerMovement : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         moveAction = InputSystem.actions.FindAction("Move");
 
+        happyAction = InputSystem.actions.FindAction("HappyDemo");
+        angryAction = InputSystem.actions.FindAction("AngryDemo");
+        eatAction = InputSystem.actions.FindAction("EatDemo");
+        ////////////////////////////////////////////////////////
+
         SetGravityScale(Data.gravityScale);
-        IsFacingRight = true;
+        IsFacingRight = false;
     }
 
     private void Update()
     {
+        // this code should not be in the final release!!!!!!!
+        ///////////////////////////////////////////////////////
+        #region DEMO ACTIONS
+        if (happyAction.WasPressedThisFrame()) animator.SetTrigger("GetHappy");
+        if (angryAction.WasPressedThisFrame()) animator.SetTrigger("GetAngry");
+        if (eatAction.WasPressedThisFrame()) animator.SetTrigger("StartEating");
+        #endregion
+
         #region TIMERS
         CoyoteBufferLeft -= Time.deltaTime;
         JumpInputBufferLeft -= Time.deltaTime;
@@ -65,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x != 0) CheckFacingDirection(moveInput.x > 0);
 
         if (jumpAction.WasPressedThisFrame()) OnJumpInput();
-        if (jumpAction.WasReleasedThisFrame()) onJumpRelease();
+        if (jumpAction.WasReleasedThisFrame()) OnJumpRelease();
         #endregion
 
         #region COLLISION CHECKS
@@ -109,6 +130,10 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocityY = Mathf.Max(rb.linearVelocityY, -Data.maxFallSpeed);
         #endregion
+
+        animator.SetBool("Jumping", IsJumping);
+        animator.SetBool("Falling", isJumpFalling);
+        animator.SetFloat("XSpeed", Mathf.Abs(moveInput.x));
     }
     private void FixedUpdate()
     {
@@ -121,9 +146,12 @@ public class PlayerMovement : MonoBehaviour
         JumpInputBufferLeft = Data.jumpInputBufferTime;
     }
     
-    public void onJumpRelease()
+    public void OnJumpRelease()
     {
-        if (IsJumping) isJumpFalling = true;
+        if (IsJumping)
+        {
+            isJumpFalling = true;
+        }
     }
     #endregion
 
@@ -141,10 +169,8 @@ public class PlayerMovement : MonoBehaviour
         float targetSpeed = moveInput.x * Data.runMaxSpeed;
         targetSpeed = Mathf.Lerp(rb.linearVelocity.x, targetSpeed, speedLimiter);
 
-        ///////////////////////////////////////////////////////////
-        // do I need to calculate acceleration rate at all !!!!
-        float accel = Data.runAccelAmount;
 
+        float accel = Data.runAccelAmount;
         if (IsAirHanging()) accel *= Data.jumpHangAccelMult;
 
         float speedDif = targetSpeed - rb.linearVelocityX;
