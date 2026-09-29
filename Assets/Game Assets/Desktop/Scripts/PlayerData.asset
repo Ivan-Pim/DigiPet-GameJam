@@ -16,6 +16,7 @@ MonoBehaviour:
   gravityScale: 13.761466
   fallGravityMult: 2
   maxFallSpeed: 30
+  maxPoundFallSpeed: 45
   jumpHangGravityMult: 0.5
   runMaxSpeed: 30
   runAcceleration: 5
@@ -28,5 +29,7 @@ MonoBehaviour:
   jumpHangAccelMult: 2
   MultiJumps: 1
   airJumpForceMult: 0.8
+  haltHorizontalMomentum: 1
+  impactDuration: 0.05
   coyoteTime: 0.15
   jumpInputBufferTime: 0.1

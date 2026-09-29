@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,12 +16,14 @@ public class PlayerMovement : MonoBehaviour
     public bool IsFacingRight { get; private set; }
     public bool IsJumping { get; private set; }
     private bool isJumpFalling;
+    private bool isInGroundPound;
     #endregion
 
     #region INPUT PARAMETERS
     public InputActionAsset m_ActionAsset;
     InputAction jumpAction;
     InputAction moveAction;
+    InputAction groundPoundAction;
 
     /// <summary>
     InputAction happyAction;
@@ -56,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     void Start() {
         jumpAction = InputSystem.actions.FindAction("Jump");
         moveAction = InputSystem.actions.FindAction("Move");
+        groundPoundAction = InputSystem.actions.FindAction("Ground Pound");
 
         happyAction = InputSystem.actions.FindAction("HappyDemo");
         angryAction = InputSystem.actions.FindAction("AngryDemo");
@@ -95,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
                 CoyoteBufferLeft = Data.coyoteTime;
                 MultiJumpsLeft = Data.MultiJumps;
                 isJumpFalling = false;
+                isInGroundPound = false;
             }
         }
         #endregion
@@ -118,6 +123,13 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
+
+        if (groundPoundAction.WasPressedThisFrame() && CanGroundPound()) {
+            Sleep(Data.impactDuration);
+
+            isInGroundPound = true;
+            GroundPound(Data.haltHorizontalMomentum);
+        }
         #endregion
 
         #region GRAVITY
@@ -128,28 +140,27 @@ public class PlayerMovement : MonoBehaviour
         else if (isJumpFalling) SetGravityScale(Data.gravityScale * Data.fallGravityMult);
         else SetGravityScale(Data.gravityScale);
 
-        rb.linearVelocityY = Mathf.Max(rb.linearVelocityY, -Data.maxFallSpeed);
+        if (isInGroundPound) rb.linearVelocityY = Mathf.Max(rb.linearVelocityY, -Data.maxPoundFallSpeed);
+        else rb.linearVelocityY = Mathf.Max(rb.linearVelocityY, -Data.maxFallSpeed);
         #endregion
 
         animator.SetBool("Jumping", IsJumping);
         animator.SetBool("Falling", isJumpFalling);
+        animator.SetBool("InGroundPound", isInGroundPound);
         animator.SetFloat("XSpeed", Mathf.Abs(moveInput.x));
     }
     private void FixedUpdate()
     {
-        Run(1);
+        if (!isInGroundPound || !Data.haltHorizontalMomentum) Run(1);
     }
 
     #region INPUT CALLBACKS
-    public void OnJumpInput()
-    {
+    public void OnJumpInput() {
         JumpInputBufferLeft = Data.jumpInputBufferTime;
     }
     
-    public void OnJumpRelease()
-    {
-        if (IsJumping)
-        {
+    public void OnJumpRelease() {
+        if (IsJumping) {
             isJumpFalling = true;
         }
     }
@@ -159,6 +170,17 @@ public class PlayerMovement : MonoBehaviour
     public void SetGravityScale(float gravity)
     {
         rb.gravityScale = gravity;
+    }
+
+    public void Sleep(float duration) {
+        //nameof() instead of string somehow
+        StartCoroutine(nameof(PerformSleep), duration);
+    }
+
+    private IEnumerator PerformSleep(float duration) {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(duration); // Realtime since timescale is 0
+        Time.timeScale = 1;
     }
     #endregion
 
@@ -205,12 +227,27 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForceY(force, ForceMode2D.Impulse);
         #endregion
     }
+
+    private void GroundPound(bool haltHorizontal)
+    {
+        Vector2 force = new Vector2(0, -Data.maxPoundFallSpeed);
+
+        if (rb.linearVelocityY > 0) force.y -= rb.linearVelocityY;
+        if (haltHorizontal) force.x -= rb.linearVelocityX;
+        rb.AddForce(force, ForceMode2D.Impulse);
+
+    }
     #endregion
 
     #region CHECK METHODS
     public void CheckFacingDirection(bool IsMovingRight)
     {
         if (IsMovingRight != IsFacingRight) Turn();
+    }
+
+    public bool IsAirborne()
+    {
+        return (IsJumping || isJumpFalling);
     }
 
     private bool CanJump()
@@ -220,12 +257,17 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanAirJump()
     {
-        return MultiJumpsLeft > 0 && (IsJumping || isJumpFalling);
+        return MultiJumpsLeft > 0 && (IsAirborne() && ! isInGroundPound);
+    }
+
+    private bool CanGroundPound()
+    {
+        return IsAirborne();
     }
 
     private bool IsAirHanging()
     {
-        return (IsJumping || isJumpFalling) && Mathf.Abs(rb.linearVelocityY) < Data.jumpHangThreshold;
+        return (IsAirborne() && !isInGroundPound) && Mathf.Abs(rb.linearVelocityY) < Data.jumpHangThreshold;
     }
     #endregion
 }

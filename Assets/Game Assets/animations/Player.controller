@@ -111,7 +111,7 @@ AnimatorStateTransition:
   m_Name: Into GroundPound
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: StartGroundPound
+    m_ConditionEvent: InGroundPound
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7573238627453582737}
@@ -314,6 +314,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Falling
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: InGroundPound
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4187244183815326165}
   m_Solo: 0
@@ -386,12 +389,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: StartGroundPound
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: Jumping
     m_Type: 4
     m_DefaultFloat: 0
@@ -399,6 +396,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: Falling
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: InGroundPound
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -734,7 +737,7 @@ AnimatorStateTransition:
   m_Name: Into GroundPound
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: StartGroundPound
+    m_ConditionEvent: InGroundPound
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7573238627453582737}

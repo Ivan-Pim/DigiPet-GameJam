@@ -12,6 +12,9 @@ public class PlayerData : ScriptableObject
     public float maxFallSpeed; // Terminal velocity of the player;
 
     [Space(5)]
+    public float maxPoundFallSpeed; // Terminal velocity during a Ground Pound, used as GP Force;
+
+    [Space(5)]
     public float jumpHangGravityMult; // how much floatier the character is at the peak of their jump
 
     [Space(20)]
@@ -39,7 +42,12 @@ public class PlayerData : ScriptableObject
     public int MultiJumps; // amount of air jumps possible
     public float airJumpForceMult; // make the air jumps stronger or weaker than ones from the ground
 
-    [Space(10)]
+    [Space(5)]
+    [Header("Ground Pound")]
+    public bool haltHorizontalMomentum; // stops player character in their X position if true
+    public float impactDuration; // how long to freeze the game to give extra impact on GP start
+
+    [Space(20)]
 
     [Header("Assists")]
     public float coyoteTime; // grace period while not grounded where you can still jump
