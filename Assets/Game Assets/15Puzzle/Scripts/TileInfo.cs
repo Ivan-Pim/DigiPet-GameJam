@@ -1,45 +1,104 @@
 using UnityEngine;
-using TMPro;
+using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 
 public class TileInfo : MonoBehaviour
 {
     public int id;
-    public int[] coords = new int[2];
+    public int pointX, pointY;
     public Puzzle15 root;
 
+    [SerializeField] private float moveTime = 0.25f;
+
+    #region SET METHODS
     public void setRoot(Puzzle15 root)
     {
         this.root = root;
     }
     public void setCoords(int x, int y)
     {
-        coords[0] = x;
-        coords[1] = y;
-        gameObject.transform.position = new Vector2(root.topleftEdge.x + Puzzle15.tileX * (x + 0.5f), root.topleftEdge.y- Puzzle15.tileY * (y + 0.5f));
+        pointX = x;
+        pointY = y;
+        gameObject.transform.position = PointsToCoords(x, y);
     }
     public void SetID(int id)
     {
         this.id = id;
-        GetComponentInChildren<TextMeshPro>().text = id.ToString();
     }
+    #endregion
 
+    #region CHECK METHODS
     public bool InCorrectPosition()
     {
-        int currentPosition = coords[0] + coords[1] * Puzzle15.xSize + 1;
+        int currentPosition = pointX + pointY * root.xSize + 1;
         return (id == currentPosition);
     }
+    #endregion
+
+    #region INPUT RESPONSE
 
     private void OnMouseDown()
     {
-        int distance = Mathf.Abs(coords[0] - root.emptyCoords[0]) + Mathf.Abs(coords[1] - root.emptyCoords[1]);
+        int distance = Mathf.Abs(pointX - root.emptyX) + Mathf.Abs(pointY - root.emptyY);
         if (distance == 1)
         {
-            // check that this is a copy, not a link
-            int[] temp = new int[2] { coords[0], coords[1] };
-            this.setCoords(root.emptyCoords[0], root.emptyCoords[1]);
-            root.SetEmptyCoords(temp);
+            int tempX = pointX, tempY = pointY;
+            this.moveCoords(tempX, tempY, root.emptyX, root.emptyY, moveTime);
+            root.SetEmptyCoords(tempX, tempY);
             root.CheckSolved();
         }
     }
+    #endregion
+
+    #region Move Methods
+    private void moveCoords(int originX, int originY, int destX, int destY, float time)
+    {
+        pointX = destX;
+        pointY = destY;
+        MoveTile(PointsToCoords(originX, originY), PointsToCoords(destX, destY), time);
+
+    }
+    #endregion
+
+    #region General Methods
+    private Vector2 PointsToCoords(int x, int y)
+    {
+        return new Vector2(root.topleftEdge.x + root.tileX * (x + 0.5f), root.topleftEdge.y - root.tileY * (y + 0.5f));
+    }
+
+    private void MoveTile(Vector2 original, Vector2 destination, float time)
+    {
+        StartCoroutine(MoveRoutine(original, destination, time));
+    }
+
+    public void AppearTile(float time) {
+        StartCoroutine(AppearRoutine(time));
+    }
+    #endregion
+
+    #region COROUTINES
+    private IEnumerator MoveRoutine(Vector2 original, Vector2 destination, float time) {
+        float progress = 0;
+        do
+        {
+            progress += Time.deltaTime;
+            float xPos = Mathf.Lerp(original.x, destination.x, progress / time);
+            float yPos = Mathf.Lerp(original.y, destination.y, progress / time);
+            gameObject.transform.position = new Vector2(xPos, yPos);
+            yield return null;
+        } while (progress < time);
+    }
+
+    private IEnumerator AppearRoutine(float time) {
+        SpriteRenderer image = gameObject.GetComponent<SpriteRenderer>();
+        image.color = new Color(1f, 1f, 1f, 0f);
+        float progress = 0;
+        while (progress < time) {
+            progress += Time.deltaTime;
+            image.color = new Color(1f, 1f, 1f, progress / time);
+            yield return null;
+        }
+    }
+    #endregion
 
 }

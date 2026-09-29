@@ -285,8 +285,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72549e1fef6c67e4a9efc1fcb9766637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  Data: {fileID: 11400000, guid: 657c3aea9fc7fa24fa5780ba3d37745f, type: 2}
+  xSize: 4
+  ySize: 4
+  tileX: 5
+  tileY: 5
   topleftEdge: {x: -10, y: 10}
   tilePrefab: {fileID: 2078284388614864536, guid: 1b4eb965922d9c447926ef00fd9ea209, type: 3}
+  thePuzzle:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   numArray: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000i
   emptyCoords: 0300000003000000i
 --- !u!4 &2100430024

@@ -4,22 +4,34 @@ using UnityEngine.UIElements;
 
 public class Puzzle15 : MonoBehaviour
 {
-    public const int xSize = 4, ySize = 4, tileX = 5, tileY = 5;
-    public Vector2 topleftEdge = new Vector2(-10f, 10f);
+    public PuzzleData Data;
+
+    public int xSize = 4, ySize = 4;
+    public float tileX = 5, tileY = 5;
+    public Vector2 topleftEdge;
     [SerializeField] GameObject tilePrefab;
 
-    public TileInfo[] thePuzzle = new TileInfo[xSize * ySize - 1];
-    public int[] numArray = new int[xSize * ySize - 1];
-    public int[] emptyCoords;
+    public TileInfo[] thePuzzle;
+    public int[] numArray;
+    public int emptyX, emptyY;
 
-    public void SetEmptyCoords(int[] coords)
+    public float appearTime = 0.25f;
+
+    public void SetEmptyCoords(int coordX, int coordY)
     {
-        emptyCoords[0] = coords[0];
-        emptyCoords[1] = coords[1];
+        emptyX = coordX;
+        emptyY = coordY;
     }
 
     void Awake()
     {
+        thePuzzle = new TileInfo[xSize * ySize - 1];
+        numArray = new int[xSize * ySize - 1];
+
+        tileX = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.x;
+        tileY = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+        topleftEdge = new Vector2(-tileX * xSize / 2, tileY * ySize / 2);
+
         RandomizeTiles();
         for (int i = 0; i < xSize * ySize - 1; ++i)
         {
@@ -27,13 +39,14 @@ public class Puzzle15 : MonoBehaviour
             int y = i / 4;
             thePuzzle[i] = CreateTile(x, y, numArray[i]);
         }
-        SetEmptyCoords(new int[2]{xSize - 1, ySize - 1});
+        SetEmptyCoords(xSize - 1, ySize - 1);
     }
 
     public TileInfo CreateTile(int x, int y, int id)
     {
         GameObject newTile = Instantiate(tilePrefab);
         newTile.transform.parent = this.transform;
+        newTile.GetComponent<SpriteRenderer>().sprite = Data.tiles[id - 1];
         TileInfo tileinfo = newTile.GetComponentInChildren<TileInfo>();
         tileinfo.setRoot(this);
         tileinfo.SetID(id);
@@ -84,6 +97,7 @@ public class Puzzle15 : MonoBehaviour
                 return;
             }
         }
+        CreateTile(xSize - 1, ySize - 1, xSize * ySize).AppearTile(appearTime);
         Debug.Log("You Win!");
     }
 }

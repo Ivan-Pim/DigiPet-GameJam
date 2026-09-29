@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df980bf732ee2834591a927519ac2256, type: 3}
+  m_Name: PuzzleData
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleData
+  tiles:
+  - {fileID: 6173586490242497409, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: -1182575080, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 1000603901, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 628907204, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 883075866, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: -1003152572, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 107546301, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 271967796, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: -439775676, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 1787314686, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: -594804911, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 1526828049, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 2036070900, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 728566316, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 1020660865, guid: 9987929e3c3952841803935975593c19, type: 3}
+  - {fileID: 1054266696, guid: 9987929e3c3952841803935975593c19, type: 3}

@@ -30,6 +30,6 @@ MonoBehaviour:
   MultiJumps: 1
   airJumpForceMult: 0.8
   haltHorizontalMomentum: 1
-  impactDuration: 0.05
+  impactDuration: 0.07
   coyoteTime: 0.15
   jumpInputBufferTime: 0.1
