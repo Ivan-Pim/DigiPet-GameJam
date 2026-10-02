@@ -151,7 +151,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!isInGroundPound || !Data.haltHorizontalMomentum) Run(1);
+        bool runAllowed = (!isInGroundPound || !Data.haltHorizontalMomentum) && !(IsAirborne() && (rb.linearVelocity == Vector2.zero));
+        if (runAllowed) Run(1);
     }
 
     #region INPUT CALLBACKS
@@ -192,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
         targetSpeed = Mathf.Lerp(rb.linearVelocity.x, targetSpeed, speedLimiter);
 
 
-        float accel = Data.runAccelAmount;
+        float accel = (Mathf.Abs(targetSpeed) > 0.01) ? Data.runAccelAmount : Data.runDecelAmount;
         if (IsAirHanging()) accel *= Data.jumpHangAccelMult;
 
         float speedDif = targetSpeed - rb.linearVelocityX;

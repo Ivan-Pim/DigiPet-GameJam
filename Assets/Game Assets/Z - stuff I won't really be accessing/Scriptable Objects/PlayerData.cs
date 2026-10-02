@@ -21,8 +21,10 @@ public class PlayerData : ScriptableObject
 
     [Header("Run")]
     public float runMaxSpeed; // player's desired movement speed;
-    public float runAcceleration; // acceleration of player until reaching max speed PER 1 second
+    public float timeTillMaxSpeed; // how many seconds it takes to reach max speed
+    public float timeTillStop; // how many seconds it takes to stop moving
     [HideInInspector] public float runAccelAmount; // The force to apply through Unity to achieve the desired acceleration;
+    [HideInInspector] public float runDecelAmount; // The force to apply through Unity to achieve the desired deceleration;
 
 
     [Space(20)]
@@ -65,13 +67,15 @@ public class PlayerData : ScriptableObject
 
         // convert acceleration from seconds to frames, unity performs 
         // and then some kinda relation to runMaxSpeed, I don't write the code, I just copy it
-        runAccelAmount = (runAcceleration / Time.fixedDeltaTime) / runMaxSpeed;
+        runAccelAmount = runMaxSpeed / (timeTillMaxSpeed / Time.fixedDeltaTime);
+
+        runDecelAmount = runMaxSpeed / (timeTillStop / Time.fixedDeltaTime);
 
         // projectile motion formula again
         jumpForce = Mathf.Abs(gravityStrength) * jumpTimeToApex;
 
-        runAcceleration = Mathf.Clamp(runAcceleration, 0.01f, runMaxSpeed);
-
+        timeTillMaxSpeed = Mathf.Max(timeTillMaxSpeed, 0);
+        timeTillStop = Mathf.Max(timeTillStop, 0);
     }
 
 }

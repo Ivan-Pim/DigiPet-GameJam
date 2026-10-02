@@ -15,18 +15,20 @@ MonoBehaviour:
   gravityStrength: -224.99998
   gravityScale: 22.935778
   fallGravityMult: 2.5
-  maxFallSpeed: 45
-  maxPoundFallSpeed: 80
-  jumpHangGravityMult: 0.5
-  runMaxSpeed: 30
-  runAcceleration: 5
-  runAccelAmount: 8.333337
+  maxFallSpeed: 60
+  maxPoundFallSpeed: 90
+  jumpHangGravityMult: 0.4
+  runMaxSpeed: 45
+  timeTillMaxSpeed: 0.25
+  timeTillStop: 0.075
+  runAccelAmount: 3.5999985
+  runDecelAmount: 11.999995
   jumpHeight: 12.5
   jumpTimeToApex: 0.33333334
-  distanceToApex: 10
+  distanceToApex: 15
   jumpForce: 75
-  jumpHangThreshold: 1
-  jumpHangAccelMult: 2
+  jumpHangThreshold: 2
+  jumpHangAccelMult: 3
   MultiJumps: 1
   airJumpForceMult: 0.8
   haltHorizontalMomentum: 1
