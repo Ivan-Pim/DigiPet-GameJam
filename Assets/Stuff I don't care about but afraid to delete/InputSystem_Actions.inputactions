@@ -470,6 +470,28 @@
                 },
                 {
                     "name": "",
+                    "id": "3ba30286-c566-4465-b18f-467cf961b06a",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48857780-8497-4a15-8a38-79254e17a56d",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1534dc16-a6aa-499d-9c3a-22b47347b52a",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -559,10 +581,10 @@
                 {
                     "name": "",
                     "id": "8fc7df97-2393-4c86-8b9b-b39f23e49f5f",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "EatDemo",
                     "isComposite": false,
                     "isPartOfComposite": false

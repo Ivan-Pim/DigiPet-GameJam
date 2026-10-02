@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 4011208788079801563}
   - component: {fileID: 7503662278583318691}
   m_Layer: 0
-  m_Name: SoundLevelMajorPalette
+  m_Name: SoundLevelPaletteManual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

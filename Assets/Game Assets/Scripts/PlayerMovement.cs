@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
                 MultiJumpsLeft = Data.MultiJumps;
                 isJumpFalling = false;
                 isInGroundPound = false;
-            }
+            } else isJumpFalling = true;
         }
         #endregion
 
@@ -268,6 +268,14 @@ public class PlayerMovement : MonoBehaviour
     private bool IsAirHanging()
     {
         return (IsAirborne() && !isInGroundPound) && Mathf.Abs(rb.linearVelocityY) < Data.jumpHangThreshold;
+    }
+    #endregion
+
+    #region EDITOR METHODS
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(_groundCheckPoint.position, _groundCheckSize);
     }
     #endregion
 }
