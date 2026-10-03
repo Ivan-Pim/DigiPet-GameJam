@@ -11,7 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public Animator animator;
 
-    public GroundPoundTrigger gpTrigger;
+    #region GP parameters
+    [SerializeField] private GameObject LandingParticle;
+    [SerializeField] private int dustFrames = 10;
+    #endregion
+
     #endregion
 
     #region STATE PARAMETERS
@@ -54,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        gpTrigger = GetComponentInChildren<GroundPoundTrigger>();
     }
     private void OnEnable() {
         m_ActionAsset.FindActionMap("Player").Enable();
@@ -99,14 +102,7 @@ public class PlayerMovement : MonoBehaviour
         #region COLLISION CHECKS
         if (!IsJumping) {
             if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer)) {
-                CoyoteBufferLeft = Data.coyoteTime;
-                MultiJumpsLeft = Data.MultiJumps;
-                isJumpFalling = false;
-                if (isInGroundPound) {
-                    isInGroundPound = false;
-                    gpTrigger.swapState(isInGroundPound);
-                }
-                
+                PerformLanding();
             } else isJumpFalling = true;
         }
         #endregion
@@ -135,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
             Sleep(Data.impactDuration);
 
             isInGroundPound = true;
-            gpTrigger.swapState(isInGroundPound);
             GroundPound(Data.haltHorizontalMomentum);
         }
         #endregion
@@ -244,6 +239,20 @@ public class PlayerMovement : MonoBehaviour
         if (rb.linearVelocityY > 0) force.y -= rb.linearVelocityY;
         if (haltHorizontal) force.x -= rb.linearVelocityX;
         rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    private void PerformLanding()
+    {
+        CoyoteBufferLeft = Data.coyoteTime;
+        MultiJumpsLeft = Data.MultiJumps;
+        isJumpFalling = false;
+        if (isInGroundPound)
+        {
+            isInGroundPound = false;
+            GameObject dust = Instantiate(LandingParticle);
+            dust.GetComponent<MyAnimator>().PlayAnimation(dustFrames, true);
+            dust.transform.parent = null;
+        }
     }
     #endregion
 
