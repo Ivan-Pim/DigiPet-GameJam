@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2329900835879814349}
   - component: {fileID: 4942361219701091114}
   m_Layer: 3
-  m_Name: SoundLEvelAssets1_0
+  m_Name: SoundFileSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
