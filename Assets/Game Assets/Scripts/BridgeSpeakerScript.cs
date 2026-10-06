@@ -46,9 +46,8 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
         float baseY = transform.position.y;
 
         Vector2 forward = transform.InverseTransformDirection(Vector2.right);
-        Debug.Log(forward.ToString()); 
         for (int i = 0; i < length; ++i) {
-            GameObject newBar = Instantiate(soundBar, soundWave.transform);
+            GameObject newBar = Instantiate(soundBar, soundWave.transform, false);
             newBar.transform.position = new Vector2((baseX + distX * i), baseY);
         }
     }
