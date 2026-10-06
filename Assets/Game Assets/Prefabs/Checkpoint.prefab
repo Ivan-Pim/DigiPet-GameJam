@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4227878523887603602}
   - component: {fileID: 1856519413897555526}
   - component: {fileID: 2294427436661580376}
+  - component: {fileID: 3173025031823778921}
   m_Layer: 0
   m_Name: Save Sprite
   m_TagString: Untagged
@@ -115,6 +116,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3173025031823778921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228469447292417176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6de518087ecfaa47b50998fca12b16e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingFloat
+  speed: 1
+  amplitude: 1
 --- !u!1 &4850773870818553518
 GameObject:
   m_ObjectHideFlags: 0

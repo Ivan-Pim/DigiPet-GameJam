@@ -230,7 +230,7 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 9e5b479acacc893458bee951fe44851e, type: 2}
   animator: {fileID: 5052083364467930496}
   LandingParticle: {fileID: 6580243690816081519, guid: a96885a92d499a644850140c399622a0, type: 3}
-  dustFrames: 10
+  dustFrames: 20
   m_ActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _groundCheckPoint: {fileID: 5734370989481693455}
   _groundCheckSize: {x: 1.85, y: 0.05}
