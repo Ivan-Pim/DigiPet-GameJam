@@ -249,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
         if (isInGroundPound)
         {
             isInGroundPound = false;
-            GameObject dust = Instantiate(LandingParticle);
+            GameObject dust = Instantiate(LandingParticle, gameObject.transform);
             dust.GetComponent<MyAnimator>().PlayAnimation(dustFrames, true);
             dust.transform.parent = null;
         }
@@ -279,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanGroundPound()
     {
-        return IsAirborne();
+        return IsAirborne() && !isInGroundPound;
     }
 
     private bool IsAirHanging()

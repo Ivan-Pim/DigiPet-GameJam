@@ -7,10 +7,10 @@ public class MyAnimator : MonoBehaviour
     private SpriteRenderer renderer;
     [SerializeField] private int frameWait;
 
-    private void Start()
+    private void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
-        PlayAnimation(frameWait, true);
+        //PlayAnimation(frameWait, true);
     }
 
     public void PlayAnimation(int waitInterval, bool oneTime) {
