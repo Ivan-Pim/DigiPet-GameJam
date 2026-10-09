@@ -97,7 +97,11 @@ public class Puzzle15 : MonoBehaviour
                 return;
             }
         }
-        CreateTile(xSize - 1, ySize - 1, xSize * ySize).AppearTile(appearTime);
+
+        foreach (TileInfo tile in thePuzzle) tile.FinishGame();
+        TileInfo lastTile = CreateTile(xSize - 1, ySize - 1, xSize * ySize);
+        lastTile.AppearTile(appearTime);
+        lastTile.FinishGame();
         Debug.Log("You Win!");
     }
 }

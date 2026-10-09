@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 
 public class TileInfo : MonoBehaviour
 {
@@ -9,6 +8,8 @@ public class TileInfo : MonoBehaviour
     public Puzzle15 root;
 
     [SerializeField] private float moveTime = 0.25f;
+    [SerializeField] private float finalizeTime = 0.25f;
+    public bool inPlay = true;
 
     #region SET METHODS
     public void setRoot(Puzzle15 root)
@@ -39,6 +40,8 @@ public class TileInfo : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!inPlay) return;
+
         int distance = Mathf.Abs(pointX - root.emptyX) + Mathf.Abs(pointY - root.emptyY);
         if (distance == 1)
         {
@@ -73,6 +76,12 @@ public class TileInfo : MonoBehaviour
 
     public void AppearTile(float time) {
         StartCoroutine(AppearRoutine(time));
+    }
+
+    public void FinishGame()
+    {
+        inPlay = false;
+        GetComponentInChildren<TileBorder>().Dissapear(finalizeTime);
     }
     #endregion
 

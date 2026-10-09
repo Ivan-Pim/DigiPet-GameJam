@@ -131,10 +131,10 @@ TextureImporter:
       name: BG2SoundLevel_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 282
-        width: 722
-        height: 405
+        width: 720
+        height: 403
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
