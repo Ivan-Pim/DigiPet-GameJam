@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SwitchFile : MonoBehaviour, IHittable
 {
-    [SerializeField] private GameObject connectedReference;
-    private IStateDevice connectedElement;
+    [SerializeField] private GameObject[] connectedReference;
+    private IStateDevice[] connectedElement;
 
     private float bounceSpeed = 10f;
     private float comebackSpeed = 5f;
@@ -12,12 +12,17 @@ public class SwitchFile : MonoBehaviour, IHittable
 
     public void Awake()
     {
-        connectedElement = connectedReference.GetComponent<IStateDevice>();
+        connectedElement = new IStateDevice[connectedReference.Length];
+        for (int i = 0; i < connectedReference.Length; i++) {
+            connectedElement[i] = connectedReference[i].GetComponent<IStateDevice>();
+        }
     }
 
     public void OnHit() {
         StartCoroutine(bounceRoutine());
-        if (connectedElement != null) connectedElement.SwapState();
+        if (connectedElement != null) {
+            foreach (IStateDevice device in connectedElement) device.SwapState();
+        }
     }
 
     public IEnumerator bounceRoutine()

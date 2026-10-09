@@ -256,6 +256,10 @@ PrefabInstance:
       propertyPath: connectedReference
       value: 
       objectReference: {fileID: 8542748178231280322}
+    - target: {fileID: 609758891851365292, guid: 30f009f47bbe1974786971ac250ce481, type: 3}
+      propertyPath: 'connectedReference.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8542748178231280322}
     - target: {fileID: 4463443067955677859, guid: 30f009f47bbe1974786971ac250ce481, type: 3}
       propertyPath: m_Name
       value: SoundFileSwitch
