@@ -51594,10 +51594,6 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2809222106992544701, guid: f94108b8bc62c004b81e7ac62d3e9eee, type: 3}
-      propertyPath: maxDistance
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2809222106992544701, guid: f94108b8bc62c004b81e7ac62d3e9eee, type: 3}
       propertyPath: attackFrequency
       value: 1
       objectReference: {fileID: 0}
@@ -51801,7 +51797,7 @@ GameObject:
   - component: {fileID: 1978091207}
   - component: {fileID: 1978091210}
   - component: {fileID: 1978091209}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53980,10 +53976,6 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2809222106992544701, guid: f94108b8bc62c004b81e7ac62d3e9eee, type: 3}
-      propertyPath: maxDistance
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 2809222106992544701, guid: f94108b8bc62c004b81e7ac62d3e9eee, type: 3}
       propertyPath: attackFrequency
       value: 1.5
       objectReference: {fileID: 0}
@@ -54005,7 +53997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3447013603535924825, guid: f94108b8bc62c004b81e7ac62d3e9eee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.3
+      value: -8.7
       objectReference: {fileID: 0}
     - target: {fileID: 3447013603535924825, guid: f94108b8bc62c004b81e7ac62d3e9eee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -54207,11 +54199,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9211018491473370279, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.8
+      value: 436.1
       objectReference: {fileID: 0}
     - target: {fileID: 9211018491473370279, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17
+      value: -12.8
       objectReference: {fileID: 0}
     - target: {fileID: 9211018491473370279, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
       propertyPath: m_LocalPosition.z
