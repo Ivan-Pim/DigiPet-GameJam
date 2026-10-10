@@ -105,8 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a4c5d7af8c53f4e8aedb5c815d14d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  isActive: 1
+  isActive: 0
   attackFrequency: 2
+  attackDelay: 0
   bulletSpawn: {x: 0.1, y: 0}
   bullet: {fileID: 4113989952071705009, guid: 64a90d5a62618fe448855e733c9d97d4, type: 3}
   bulletSpeed: 10

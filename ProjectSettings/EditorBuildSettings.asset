@@ -6,7 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Game Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Game Assets/Scenes/Desktop Scene.unity
+    guid: edda7c14e5e1cbf44ad61a44866a76ca
+  - enabled: 1
+    path: Assets/Game Assets/Scenes/SoundLevelScene.unity
+    guid: 53783f3f12f467d4ea879b8f9a96a9f5
+  - enabled: 1
+    path: Assets/Game Assets/Scenes/PyatnashkiScene.unity
+    guid: e0c9127d271cf7b47a7f6b6172cc0ed9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

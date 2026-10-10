@@ -1,10 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class SoundCannon : MonoBehaviour
 {
     #region Cannon Data
-    [SerializeField] private bool isActive = true;
+    [SerializeField] private bool isActive = false;
     [SerializeField] private float attackFrequency = 1.0f;
+    [SerializeField] private float attackDelay = 0;
     private float timeSinceLastShot = 0f;
 
     [SerializeField] private Vector2 bulletSpawn = Vector2.right;
@@ -16,7 +18,7 @@ public class SoundCannon : MonoBehaviour
 
     void Start()
     {
-        
+        StartCoroutine(WaitingRoutine(attackDelay));
     }
 
     // Update is called once per frame
@@ -37,5 +39,11 @@ public class SoundCannon : MonoBehaviour
         newBullet.transform.localPosition = bulletSpawn;
         newBullet.setSpeed(bulletSpeed);
         newBullet.setMaxDistance(maxDistance);
+    }
+
+    public IEnumerator WaitingRoutine(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        isActive = true;
     }
 }
