@@ -45,14 +45,11 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
     }
 
     public void CreateSoundWave(int length) {
-        float baseX = 5;
-        float distX = 2.2f;
-        float baseY = 0;
 
         for (int i = 0; i < length; ++i) {
             GameObject newBar = Instantiate(soundBar, soundWave.transform);
             /// ??????????????????????????????????????????
-            newBar.transform.SetLocalPositionAndRotation(new Vector3((baseX + distX * i), baseY, 0), Quaternion.identity);
+            newBar.transform.SetLocalPositionAndRotation(new Vector3((offsetX + distX * i), offsetY, 0), Quaternion.identity);
         }
     }
 }
