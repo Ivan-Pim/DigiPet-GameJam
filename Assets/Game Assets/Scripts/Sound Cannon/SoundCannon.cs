@@ -35,7 +35,7 @@ public class SoundCannon : MonoBehaviour
 
     void Fire()
     {
-        SoundBullet newBullet = Instantiate(bullet, transform, false).GetComponent<SoundBullet>();
+        SoundBullet newBullet = Instantiate(bullet, this.transform).GetComponent<SoundBullet>();
         newBullet.transform.localPosition = bulletSpawn;
         newBullet.setSpeed(bulletSpeed);
         newBullet.setMaxDistance(maxDistance);

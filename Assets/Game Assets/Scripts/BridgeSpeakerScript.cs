@@ -8,12 +8,16 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
     [SerializeField] private int length = 10;
     [SerializeField] private GameObject soundBar;
 
+    private float offsetX = 5f, offsetY = 0f;
+    private float distX = 2.2f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // a little spaghetto code, because SwapState puts us to the other state, I assign not the state that we want at first.
         isActive = !initialState;
         SwapState();
+
         CreateSoundWave(length);
     }
 
@@ -41,14 +45,14 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
     }
 
     public void CreateSoundWave(int length) {
-        float baseX = transform.position.x + 5;
+        float baseX = 5;
         float distX = 2.2f;
-        float baseY = transform.position.y;
+        float baseY = 0;
 
-        Vector2 forward = transform.InverseTransformDirection(Vector2.right);
         for (int i = 0; i < length; ++i) {
-            GameObject newBar = Instantiate(soundBar, soundWave.transform, false);
-            newBar.transform.position = new Vector2((baseX + distX * i), baseY);
+            GameObject newBar = Instantiate(soundBar, soundWave.transform);
+            /// ??????????????????????????????????????????
+            newBar.transform.SetLocalPositionAndRotation(new Vector3((baseX + distX * i), baseY, 0), Quaternion.identity);
         }
     }
 }
