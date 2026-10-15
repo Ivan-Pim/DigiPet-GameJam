@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7792529644879977043}
   - component: {fileID: 7922179723085476708}
   - component: {fileID: 5536338246720417717}
+  - component: {fileID: 6432594680331818369}
   m_Layer: 7
   m_Name: Bonus Food
   m_TagString: Untagged
@@ -139,3 +140,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.8, y: 1.9}
   m_EdgeRadius: 0
+--- !u!114 &6432594680331818369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2748430240337567798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6de518087ecfaa47b50998fca12b16e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingFloat
+  speed: 1
+  amplitude: 0.5
