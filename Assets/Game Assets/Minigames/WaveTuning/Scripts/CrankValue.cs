@@ -6,23 +6,20 @@ public class CrankValue : MonoBehaviour
     public float value;
 
     #region consistent turning parameters
-    private Vector3 lastRotation;
+    private float lastRotation;
     private float startingAngle;
-
-    private float distance;
     #endregion
 
 
     private void Awake()
     {
-        lastRotation = Vector3.zero;
+        lastRotation = 0;
         startingAngle = 0;
     }
 
     private void Update() {
-        // how far from -180 to 180 are we rotated? (0 to 1)
-        //float rotation = 
-        value = (transform.rotation.eulerAngles.z) / 360f;
+        float rotation = ProperModulo((180f - transform.rotation.eulerAngles.z), 360);
+        value = rotation / 360f;
     }
 
     private void OnMouseDown() {
@@ -37,12 +34,28 @@ public class CrankValue : MonoBehaviour
         Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 forwardDirection = (mouse_pos - transform.position).normalized;
 
-        float angle = Mathf.Atan2(-forwardDirection.x, forwardDirection.y) * Mathf.Rad2Deg;
-        Debug.Log(angle);
-        transform.rotation = Quaternion.Euler(lastRotation + new Vector3(0, 0, angle - startingAngle));
+        float rotationAngle = Mathf.Atan2(-forwardDirection.x, forwardDirection.y) * Mathf.Rad2Deg;
+        float setAngle = lastRotation + rotationAngle - startingAngle;
+
+        transform.rotation = Quaternion.Euler(0, 0, setAngle);
     }
 
     private void OnMouseUp() {
-        lastRotation = transform.rotation.eulerAngles;
+        lastRotation = transform.rotation.eulerAngles.z;
     }
+
+    #region HELPER FUNCTIONS
+    public float ProperModulo(float a, float b)
+    {
+        float inconsistentModulo = a % b;
+        if (a >= 0) return inconsistentModulo;
+        else return inconsistentModulo + Mathf.Abs(b);
+    }
+
+    private bool RotatingThroughThreshold(float angleA, float angleB) {
+        bool check1 = (90 < angleA && angleA < 180) && (180 <= angleB && angleB < 270);
+        bool check2 = (90 < angleB && angleB < 180) && (180 <= angleA && angleA < 270);
+        return check1 || check2;
+    }
+    #endregion
 }
