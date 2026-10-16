@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 303035396}
   - component: {fileID: 303035397}
   - component: {fileID: 303035398}
+  - component: {fileID: 303035399}
   m_Layer: 7
   m_Name: Frequency Controller
   m_TagString: Untagged
@@ -407,7 +408,20 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.5
+  m_Radius: 2.5
+--- !u!114 &303035399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303035395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ce1db18e333c442b8f449d321e4a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  value: 0
 --- !u!1 &1114913086
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +434,7 @@ GameObject:
   - component: {fileID: 1114913089}
   - component: {fileID: 1114913088}
   - component: {fileID: 1114913090}
+  - component: {fileID: 1114913091}
   m_Layer: 0
   m_Name: Player Wave
   m_TagString: Untagged
@@ -583,10 +598,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   waveVisualiser: {fileID: 1114913088}
   targetWave: {fileID: 203786726}
+  AmpCrank: {fileID: 1759448496}
+  FreqCrank: {fileID: 303035399}
   amplitudePercent: 0.5
   frequencyPercent: 0.5
   errorMargin: 0.03
   checkTime: 0.3
+--- !u!114 &1114913091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114913086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1542de6bbdc11684096e54da23c6d957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugLoadScene
+  sceneID: 2
 --- !u!1 &1742723258
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +704,7 @@ Transform:
   m_GameObject: {fileID: 1742723258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -831,6 +861,7 @@ GameObject:
   - component: {fileID: 1759448493}
   - component: {fileID: 1759448494}
   - component: {fileID: 1759448495}
+  - component: {fileID: 1759448496}
   m_Layer: 7
   m_Name: Amplitude Controller
   m_TagString: Untagged
@@ -948,7 +979,20 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.5
+  m_Radius: 2.5
+--- !u!114 &1759448496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759448492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ce1db18e333c442b8f449d321e4a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  value: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
