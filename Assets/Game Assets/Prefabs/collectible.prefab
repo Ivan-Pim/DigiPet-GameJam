@@ -157,3 +157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b01982deb29c14480b11867fb188cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectCoin
+  iconAlts:
+  - {fileID: 26207944902704782, guid: 4e27b4c5840da1e4891727a2fb62a486, type: 3}
+  - {fileID: 1191830661, guid: 4e27b4c5840da1e4891727a2fb62a486, type: 3}
+  - {fileID: -597769910, guid: 4e27b4c5840da1e4891727a2fb62a486, type: 3}
+  - {fileID: -1136281584, guid: 4e27b4c5840da1e4891727a2fb62a486, type: 3}
+  - {fileID: 1417511200, guid: 4e27b4c5840da1e4891727a2fb62a486, type: 3}
