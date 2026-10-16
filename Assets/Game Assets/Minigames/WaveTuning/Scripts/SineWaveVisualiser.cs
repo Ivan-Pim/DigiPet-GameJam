@@ -2,13 +2,22 @@ using UnityEngine;
 
 public class SineWaveVisualiser : MonoBehaviour
 {
+    #region Common Fields
     public LineRenderer myLine;
     public int points;
     public float length = 1;
     public float moveSpeed = 5;
     public bool randomised = true;
-    public float amplitude {get; private set;}
-    public float frequency {get; private set;}
+    #endregion
+
+    #region Wave parameters
+    private float amplitude;
+    private float frequency;
+
+    public float frequencyPercent { get; private set; }
+    public float amplitudePercent { get; private set; }
+    #endregion
+
     #region Ranges
     private float minAmplitude = 0.5f, maxAmplitude = 3f;
     private float minFrequency = 0.5f, maxFrequency = 8f;
@@ -35,7 +44,6 @@ public class SineWaveVisualiser : MonoBehaviour
             float progress = (float) i / (points - 1);
             float x = Mathf.Lerp(xStart, xFinish, progress);
             float y = amplitude * Mathf.Sin(Mathf.Lerp(0, 2 * Mathf.PI, progress) * frequency + Time.timeSinceLevelLoad * moveSpeed);
-            //float y = amplitude * Mathf.Sin((frequency * x + Time.timeSinceLevelLoad * moveSpeed));
             myLine.SetPosition(i, new Vector2(x, y));
         }
     }
@@ -43,12 +51,14 @@ public class SineWaveVisualiser : MonoBehaviour
     private void InitialiseValues(bool randomised)
     {
         if (randomised) {
-            setAmplitude(Random.Range(0f, 1f));
-            setFrequency(Random.Range(0f, 1f));
+            frequencyPercent = Random.Range(0f, 1f);
+            amplitudePercent = Random.Range(0f, 1f);
         } else {
-            setAmplitude(0.5f);
-            setFrequency(0.5f);
+            frequencyPercent = 0.5f;
+            amplitudePercent = 0.5f;
         }
+        setAmplitude(amplitudePercent);
+        setFrequency(frequencyPercent);
     }
 
     public void setFrequency(float inputPercent) {

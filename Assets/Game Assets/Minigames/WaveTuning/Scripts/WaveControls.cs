@@ -3,19 +3,32 @@ using UnityEngine;
 public class WaveControls : MonoBehaviour
 {
     public SineWaveVisualiser waveVisualiser;
-    // To ensure everything stays in 
+    public SineWaveVisualiser targetWave;
+    // To ensure everything stays in appropriate ranges, use Lerp between limits
     public float amplitudePercent = 0.5f;
     public float frequencyPercent = 0.5f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public float errorMargin = 0.03f;
+
     void Start()
     {
         waveVisualiser = GetComponent<SineWaveVisualiser>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         waveVisualiser.setAmplitude(amplitudePercent);
         waveVisualiser.setFrequency(frequencyPercent);
+        CheckSolved();
+    }
+
+    private void CheckSolved() {
+        float frequencyDifference = Mathf.Abs(targetWave.frequencyPercent - frequencyPercent);
+        float amplitudeDifference = Mathf.Abs(targetWave.amplitudePercent - amplitudePercent);
+
+        if (frequencyDifference < errorMargin && amplitudeDifference < errorMargin)
+        {
+            Debug.Log("You win!!!");
+        }
     }
 }
