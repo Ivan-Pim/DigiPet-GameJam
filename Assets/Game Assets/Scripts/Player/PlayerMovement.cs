@@ -84,6 +84,9 @@ public class PlayerMovement : MonoBehaviour
         if (happyAction.WasPressedThisFrame()) animator.SetTrigger("GetHappy");
         if (angryAction.WasPressedThisFrame()) animator.SetTrigger("GetAngry");
         if (eatAction.WasPressedThisFrame()) animator.SetTrigger("StartEating");
+
+
+        if (angryAction.WasPressedThisFrame()) FindAnyObjectByType<Camera>().GetComponent<ShakeBehaviour>().TriggerShake(1f);
         #endregion
 
         #region TIMERS
@@ -108,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region JUMP CHECKS
-        if (IsJumping && rb.linearVelocityY < 0) {
+        if (IsJumping && rb.linearVelocityY <= 0) {
             IsJumping = false;
             isJumpFalling = true;
         }
@@ -245,6 +248,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CoyoteBufferLeft = Data.coyoteTime;
         MultiJumpsLeft = Data.MultiJumps;
+        IsJumping = false;
         isJumpFalling = false;
         if (isInGroundPound)
         {

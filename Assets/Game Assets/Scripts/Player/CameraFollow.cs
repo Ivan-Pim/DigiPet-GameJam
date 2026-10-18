@@ -3,7 +3,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     #region REFERENCES
-    public Transform player;
+    public GameObject player;
+    public Transform playerTransform;
     #endregion
 
     #region Movement Parameters
@@ -11,12 +12,12 @@ public class CameraFollow : MonoBehaviour
     #endregion
     void Start()
     {
-        
+        playerTransform = player.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.position.x + offsetX, player.position.y + offsetY, offsetZ);
+        transform.position = new Vector3(playerTransform.position.x + offsetX, playerTransform.position.y + offsetY, offsetZ);
     }
 }
