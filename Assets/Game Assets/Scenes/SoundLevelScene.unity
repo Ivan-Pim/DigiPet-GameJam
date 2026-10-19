@@ -11246,12 +11246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d531aadb376b479b6cde563551794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  playerState: {fileID: 1069270668}
   player: {fileID: 539648714}
   screenShake: {fileID: 852170773}
   offsetX: 5
   offsetY: 5
   offsetZ: -20
-  speed: 10
+  speed: 15
 --- !u!114 &852170773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12687,6 +12688,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f94108b8bc62c004b81e7ac62d3e9eee, type: 3}
+--- !u!114 &1069270668 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2630631279131131783, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
+  m_PrefabInstance: {fileID: 5422444605684227117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8790581ab6bea4f8859b9ca2599a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1 &1092216062
 GameObject:
   m_ObjectHideFlags: 0
