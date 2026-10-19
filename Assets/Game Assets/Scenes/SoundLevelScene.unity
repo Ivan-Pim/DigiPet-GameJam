@@ -3284,11 +3284,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 587018001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &185933973 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6582524607435703220, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
-  m_PrefabInstance: {fileID: 5422444605684227117}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &192547889
 GameObject:
   m_ObjectHideFlags: 0
@@ -7922,6 +7917,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!4 &539648714 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9211018491473370279, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
+  m_PrefabInstance: {fileID: 5422444605684227117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &544754222
 GameObject:
   m_ObjectHideFlags: 0
@@ -11246,11 +11246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d531aadb376b479b6cde563551794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 185933973}
-  playerTransform: {fileID: 1721466008}
+  player: {fileID: 539648714}
+  screenShake: {fileID: 852170773}
   offsetX: 5
-  offsetY: 7.5
-  offsetZ: -10
+  offsetY: 5
+  offsetZ: -20
+  speed: 10
 --- !u!114 &852170773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273822,11 +273823,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6615552768881104288, guid: cafa8e6942eb93a4a84c09933e7f2878, type: 3}
   m_PrefabInstance: {fileID: 1709425699}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1721466008 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9211018491473370279, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
-  m_PrefabInstance: {fileID: 5422444605684227117}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1726348264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283408,6 +283404,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 959664399361883030, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 959664399361883030, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 959664399361883030, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 6582524607435703220, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -283453,7 +283461,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3483666253496181084, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}

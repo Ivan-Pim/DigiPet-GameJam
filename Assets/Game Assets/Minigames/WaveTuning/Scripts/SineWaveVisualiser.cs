@@ -51,8 +51,8 @@ public class SineWaveVisualiser : MonoBehaviour
     private void InitialiseValues(bool randomised)
     {
         if (randomised) {
-            frequencyPercent = Random.Range(0f, 1f);
-            amplitudePercent = Random.Range(0f, 1f);
+            frequencyPercent = 0.01f * Random.Range(0, 101);
+            amplitudePercent = 0.01f * Random.Range(0, 101);
         } else {
             frequencyPercent = 0.5f;
             amplitudePercent = 0.5f;
@@ -62,10 +62,12 @@ public class SineWaveVisualiser : MonoBehaviour
     }
 
     public void setFrequency(float inputPercent) {
-        this.frequency = Mathf.Lerp(minFrequency, maxFrequency, inputPercent);
+        this.frequencyPercent = inputPercent;
+        this.frequency = Mathf.Lerp(minFrequency, maxFrequency, frequencyPercent);
     }
 
     public void setAmplitude(float inputPercent) {
-        this.amplitude = Mathf.Lerp(minAmplitude, maxAmplitude, inputPercent);
+        this.amplitudePercent = inputPercent;
+        this.amplitude = Mathf.Lerp(minAmplitude, maxAmplitude, amplitudePercent);
     }
 }

@@ -358,8 +358,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1723091215
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6277386464667066215, guid: 5d7f3f3846ade84478e08084aab45b1c, type: 3}
@@ -602,7 +602,6 @@ MonoBehaviour:
   FreqCrank: {fileID: 303035399}
   amplitudePercent: 0.5
   frequencyPercent: 0.5
-  errorMargin: 0.03
   checkTime: 0.3
 --- !u!114 &1114913091
 MonoBehaviour:
@@ -929,8 +928,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1723091215
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6277386464667066215, guid: 5d7f3f3846ade84478e08084aab45b1c, type: 3}

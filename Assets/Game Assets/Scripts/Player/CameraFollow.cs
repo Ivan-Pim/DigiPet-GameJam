@@ -3,21 +3,34 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     #region REFERENCES
-    public GameObject player;
-    public Transform playerTransform;
+    public Transform player;
+    public ShakeBehaviour screenShake;
     #endregion
 
     #region Movement Parameters
-    public float offsetX, offsetY, offsetZ;
+    [SerializeField] private float offsetX = 5, offsetY = 2, offsetZ = -20;
+    [SerializeField] private float speed = 45f;
     #endregion
     void Start()
     {
-        playerTransform = player.transform;
+        screenShake = GetComponent<ShakeBehaviour>();
+
+        transform.position = player.position + new Vector3(offsetX, offsetY, offsetZ);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(playerTransform.position.x + offsetX, playerTransform.position.y + offsetY, offsetZ);
+        Vector3 targetPosition = player.position + new Vector3(offsetX, offsetY, offsetZ);
+        Vector3 position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+
+
+        if (screenShake.shakeMagnitude > 0f) {
+            transform.position = position + screenShake.translationalShake;
+            transform.rotation = Quaternion.Euler(0, 0, screenShake.rotationalShake);
+        } else {
+            transform.position = position;
+            transform.rotation = Quaternion.identity;
+        }
     }
 }

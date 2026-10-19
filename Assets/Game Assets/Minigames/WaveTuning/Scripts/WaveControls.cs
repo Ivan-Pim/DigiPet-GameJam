@@ -11,7 +11,8 @@ public class WaveControls : MonoBehaviour
     public float amplitudePercent = 0.5f;
     public float frequencyPercent = 0.5f;
 
-    public float errorMargin = 0.03f;
+    private float amplitudeMargin = 0.05f;
+    private float frequencyMargin = 0.005f;
     public float checkTime = 0.2f;
     private float checkTimeLeft;
 
@@ -42,7 +43,7 @@ public class WaveControls : MonoBehaviour
         float frequencyDifference = Mathf.Abs(targetWave.frequencyPercent - frequencyPercent);
         float amplitudeDifference = Mathf.Abs(targetWave.amplitudePercent - amplitudePercent);
 
-        if ((frequencyDifference > errorMargin) || (amplitudeDifference > errorMargin))
+        if ((frequencyDifference > frequencyMargin) || (amplitudeDifference > amplitudeMargin))
         {
             checkTimeLeft = checkTime;
         }
@@ -53,6 +54,6 @@ public class WaveControls : MonoBehaviour
         Debug.Log("Now you really won!");
 
         // this is also debug!!!
-        GetComponent<DebugLoadScene>().OnHit();
+        //GetComponent<DebugLoadScene>().OnHit();
     }
 }
