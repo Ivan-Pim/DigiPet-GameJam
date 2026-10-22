@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         ////////////////////////////////////////////////////////
 
         SetGravityScale(Data.gravityScale);
-        IsFacingRight = false;
+        IsFacingRight = (Mathf.Sign(transform.lossyScale.x) < 0);
     }
 
     private void Update()
@@ -84,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
         if (happyAction.WasPressedThisFrame()) animator.SetTrigger("GetHappy");
         if (angryAction.WasPressedThisFrame()) animator.SetTrigger("GetAngry");
         if (eatAction.WasPressedThisFrame()) animator.SetTrigger("StartEating");
-
 
         if (angryAction.WasPressedThisFrame()) FindAnyObjectByType<Camera>().GetComponent<ShakeBehaviour>().TriggerShake(1f);
         #endregion

@@ -11249,10 +11249,13 @@ MonoBehaviour:
   playerState: {fileID: 1069270668}
   player: {fileID: 539648714}
   screenShake: {fileID: 852170773}
-  offsetX: 5
+  offsetX: 10
   offsetY: 5
   offsetZ: -20
-  speed: 15
+  lookAheadDist: 10
+  lookAheadSpeed: 2
+  speedX: 10
+  speedY: 8
 --- !u!114 &852170773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283431,6 +283434,10 @@ PrefabInstance:
     - target: {fileID: 6582524607435703220, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211018491473370279, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9211018491473370279, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
       propertyPath: m_LocalPosition.x
