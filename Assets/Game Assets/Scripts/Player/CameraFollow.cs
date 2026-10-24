@@ -11,11 +11,19 @@ public class CameraFollow : MonoBehaviour
     #endregion
 
     #region Movement Parameters
-    [SerializeField] private float offsetX = 10, offsetY = 2, offsetZ = -20;
-    [SerializeField] private float lookAheadDist = 10f, lookAheadSpeed = 2f;
-    private float targetOffsetX = 5;
-    private float horizontalDeadzoneDistance = 4f, topDeadzoneDistance = 8f, bottomDeadzoneDistance = -1f;
-    [SerializeField] private float speedX = 20f, speedY = 10;
+    [SerializeField] private float offsetX = 10, offsetY = 5, offsetZ = -20;
+    [SerializeField] private float speedX = 20f, speedY = 4f;
+    [SerializeField] private float targetOffsetX = 5, lookAheadDist = 10f, lookAheadSpeed = 2f;
+    private float targetOffsetY = 5, lookUp = 15f, restingY = 7f, lookUpSpeed = 2f;
+
+    private float horizontalDeadzoneDistance = 4f, topDeadzoneDistance = 13f, bottomDeadzoneDistance = -6f;
+    private float dampingTimerX, dampingTime = 0.25f;
+    private bool outOfYBounds = false;
+    #endregion
+
+    #region Locking Parameters
+    bool LockX = false, LockY = false;
+    float anchorX, anchorY;
     #endregion
 
     private Vector3 followPosition;
@@ -35,26 +43,45 @@ public class CameraFollow : MonoBehaviour
         Vector3 position = followPosition;
 
         #region Set X
-        RefreshLookahead(position);
-        offsetX = Mathf.Lerp(offsetX, targetOffsetX, lookAheadSpeed * Time.deltaTime);
+        if (!LockX)
+        {
+            RefreshLookahead(followPosition);
+            offsetX = Mathf.Lerp(offsetX, targetOffsetX, lookAheadSpeed * Time.deltaTime);
 
-        if (OutsideXBounds()){
-            position.x = Mathf.Lerp(position.x, player.position.x, speedX * Time.deltaTime);
+            if (OutsideXBounds() || dampingTimerX > 0){
+                position.x = Mathf.Lerp(position.x, player.position.x, speedX * Time.deltaTime);
+                dampingTimerX -= Time.deltaTime;
+            }
+            if (OutsideXBounds()) dampingTimerX = dampingTime;
+        } else {
+            position.x = Mathf.Lerp(position.x, anchorX, speedX * Time.deltaTime);
         }
 
         #endregion
 
         #region Set Y
-        if (!playerState.IsAirborne() || OutsideYBounds()) { 
-            position.y = Mathf.Lerp(position.y, player.position.y, speedY * Time.deltaTime);
+        if (!LockY)
+        {
+            RefreshLookup(followPosition);
+            offsetY = Mathf.Lerp(offsetY, targetOffsetY, lookUpSpeed * Time.deltaTime);
+
+            OutsideYBounds();
+
+            if (!playerState.IsAirborne() || outOfYBounds) { 
+                position.y = Mathf.Lerp(position.y, player.position.y, speedY * Time.deltaTime);
+            }
+            if (!playerState.IsAirborne() && !OutsideYBounds()) outOfYBounds = false;
+        } else {
+            position.y = Mathf.Lerp(position.x, anchorX, speedX * Time.deltaTime);
         }
-        
-        #endregion
 
-        #region Combine follow and offsets
 
-        targetPosition = position + new Vector3(offsetX, offsetY, offsetZ);
-        followPosition = position;
+            #endregion
+
+            #region Combine follow and offsets
+
+            targetPosition = position + new Vector3(offsetX, offsetY, offsetZ);
+            followPosition = position;
 
         #endregion
 
@@ -75,6 +102,8 @@ public class CameraFollow : MonoBehaviour
         bool top = distY > topDeadzoneDistance;
         bool bottom = distY < bottomDeadzoneDistance;
 
+        if (top || bottom) outOfYBounds = true;
+
         return top || bottom;
     }
 
@@ -86,6 +115,15 @@ public class CameraFollow : MonoBehaviour
     private void RefreshLookahead(Vector3 position){
         if ((player.position.x - position.x) >= horizontalDeadzoneDistance) targetOffsetX = lookAheadDist;
         else if ((player.position.x - position.x) <= -horizontalDeadzoneDistance) targetOffsetX = -lookAheadDist;
+    }
+
+    private void RefreshLookup(Vector3 position) {
+        if ((player.position.y - position.y) >= topDeadzoneDistance)
+            targetOffsetY = lookUp;
+        else if ((player.position.y - position.y) <= bottomDeadzoneDistance)
+            targetOffsetY = -lookUp;
+        else
+            targetOffsetY = restingY;
     }
     #endregion
 
