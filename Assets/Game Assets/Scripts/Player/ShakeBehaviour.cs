@@ -5,7 +5,7 @@ public class ShakeBehaviour : MonoBehaviour
 {
     private float maxShakeDuration = 1f;
     private float angle = 5f;
-    private float shakePower = 2f;
+    private float shakePower = 1.5f;
     public float shakeMagnitude { get; private set; }
     public Vector3 translationalShake { get; private set; }
     public float rotationalShake { get; private set; }

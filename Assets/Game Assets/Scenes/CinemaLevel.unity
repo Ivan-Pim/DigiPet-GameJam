@@ -1373,6 +1373,7 @@ GameObject:
   - component: {fileID: 1667239670}
   - component: {fileID: 1667239673}
   - component: {fileID: 1667239674}
+  - component: {fileID: 1667239675}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1397,8 +1398,8 @@ Camera:
   m_GameObject: {fileID: 1667239669}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1510,21 +1511,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d531aadb376b479b6cde563551794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
-  player: {fileID: 1918597508}
-  playerTransform: {fileID: 1918597515}
+  playerState: {fileID: 1918597517}
+  player: {fileID: 1918597515}
+  screenShake: {fileID: 1667239675}
   offsetX: 0
   offsetY: 0
   offsetZ: -10
---- !u!1 &1918597508 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6582524607435703220, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
-  m_PrefabInstance: {fileID: 84820760}
+  speedX: 20
+  speedY: 4
+  targetOffsetX: 5
+  lookAheadDist: 10
+  lookAheadSpeed: 2
+--- !u!114 &1667239675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667239669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79aa37b5eb9d016478b01fdfa25a444d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeBehaviour
 --- !u!4 &1918597515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9211018491473370279, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
   m_PrefabInstance: {fileID: 84820760}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1918597517 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2630631279131131783, guid: 4579d964a6a8b854fbd25e3f2174554c, type: 3}
+  m_PrefabInstance: {fileID: 84820760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8790581ab6bea4f8859b9ca2599a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
