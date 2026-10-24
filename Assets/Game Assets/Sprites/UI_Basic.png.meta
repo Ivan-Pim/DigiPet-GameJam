@@ -354,7 +354,7 @@ TextureImporter:
         x: 14
         y: 112
         width: 128
-        height: 80
+        height: 81
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 13, y: 13, z: 59, w: 41}
@@ -435,6 +435,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI_Basic_14
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 192
+        width: 128
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db28731b71969524daf01f38a273ba5d
+      internalID: 1842332405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -449,7 +471,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":1,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       UI_Basic_0: -5863447652145400513
       UI_Basic_1: 709981187
@@ -457,6 +479,7 @@ TextureImporter:
       UI_Basic_11: 1391951638
       UI_Basic_12: 1375174678
       UI_Basic_13: 2140131049
+      UI_Basic_14: 1842332405
       UI_Basic_2: -1029852991
       UI_Basic_3: 1963079343
       UI_Basic_4: -461018457
