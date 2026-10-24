@@ -227,7 +227,10 @@ public class PlayerMovement : MonoBehaviour
 
         #region Perform Jump
         float force = Data.jumpForce;
-        if (isAirJump) force *= Data.airJumpForceMult;
+        if (isAirJump) {
+            force *= Data.airJumpForceMult;
+            force -= Mathf.Max(0, rb.linearVelocityY);
+        }
 
         if (rb.linearVelocityY < 0) force -= rb.linearVelocityY;
         rb.AddForceY(force, ForceMode2D.Impulse);
