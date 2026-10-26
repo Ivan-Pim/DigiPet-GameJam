@@ -54,6 +54,6 @@ public class WaveControls : MonoBehaviour
         Debug.Log("Now you really won!");
 
         // this is also debug!!!
-        //GetComponent<DebugLoadScene>().OnHit();
+        GetComponent<DebugLoadScene>().OnHit();
     }
 }

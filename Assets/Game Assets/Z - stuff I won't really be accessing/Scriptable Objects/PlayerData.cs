@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("Gravity")]
-    [HideInInspector] public float gravityStrength; // Gravity needed for the desired jump height and time to peak (calculated)
+    /*[HideInInspector]*/ public float gravityStrength; // Gravity needed for the desired jump height and time to peak (calculated)
     [HideInInspector] public float gravityScale; // The strength converted to a value of the unity gravity;
 
     public float fallGravityMult; // Multiplier for player gravity while falling

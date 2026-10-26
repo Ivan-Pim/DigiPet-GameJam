@@ -38,7 +38,8 @@ public class WaveController : MonoBehaviour
     {
         float t = Time.timeSinceLevelLoad * tempo;
         for (int i = 0; i < segments.Length; i++) {
-            UpdateSegment(i, t);
+            // negate just to have waves come from the speaker, and not from the outside
+            UpdateSegment(i, -t);
         }
     }
 

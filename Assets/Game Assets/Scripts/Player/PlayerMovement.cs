@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         m_ActionAsset.FindActionMap("Player").Enable();
     }
     void Start() {
+        Debug.Log(Physics2D.gravity.y);
         jumpAction = InputSystem.actions.FindAction("Jump");
         moveAction = InputSystem.actions.FindAction("Move");
         groundPoundAction = InputSystem.actions.FindAction("Ground Pound");

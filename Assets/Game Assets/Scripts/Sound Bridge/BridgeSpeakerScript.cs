@@ -14,14 +14,20 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
     private float offsetX = 5f, offsetY = 0f;
     private float distX = 2.2f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Animator animator;
+
+    void Awake() {
+        animator = GetComponent<Animator>();
+        Array.Resize(ref segments, length);
+    }
+
     void Start()
     {
         // a little spaghetto code, because SwapState puts us to the other state, I assign not the state that we want at first.
         isActive = !initialState;
         SwapState();
 
-        Array.Resize(ref segments, length);
+        
         CreateSoundWave(length);
     }
 
@@ -31,15 +37,17 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
         
     }
 
-    public void Off(){
+    private void Off(){
         isActive = false;
         soundWave.SetActive(false);
+        animator.SetBool("isActive", isActive);
     }
 
-    public void On()
+    private void On()
     {
         isActive = true;
         soundWave.SetActive(true);
+        animator.SetBool("isActive", isActive);
     }
 
     public void SwapState()

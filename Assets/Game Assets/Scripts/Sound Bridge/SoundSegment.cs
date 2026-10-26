@@ -12,8 +12,6 @@ public class SoundSegment : MonoBehaviour
     [SerializeField] Vector2 impactSize;
     public float impactForce = 10f;
 
-    [SerializeField] bool reporting = false;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,14 +27,12 @@ public class SoundSegment : MonoBehaviour
         }
         else if (rising)
         {
-            if (reporting) Debug.Log("Tried Launching");
             rising = false;
             foreach (Collider2D hit in Physics2D.OverlapBoxAll(top, impactSize, 0, relevantLayers)) {
                 Debug.Log(hit.name);
                 if (hit != null && hit.CompareTag("Player"))
                 {
                     hit.attachedRigidbody.AddForceY(impactForce, ForceMode2D.Impulse);
-                    if (reporting) Debug.Log("Launch!!!");
                 }
             }
             

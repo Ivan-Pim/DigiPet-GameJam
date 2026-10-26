@@ -448,9 +448,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1909806326119469996, guid: 4c112bf5603bc5d43a40c970014a8427, type: 3}
+      propertyPath: values1.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909806326119469996, guid: 4c112bf5603bc5d43a40c970014a8427, type: 3}
+      propertyPath: values2.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7735252544345359763, guid: 4c112bf5603bc5d43a40c970014a8427, type: 3}
       propertyPath: m_Name
       value: Sound Bridge Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144726162518658258, guid: 4c112bf5603bc5d43a40c970014a8427, type: 3}
+      propertyPath: length
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
