@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5444700229650739841}
+  - component: {fileID: 1909806326119469996}
   m_Layer: 3
   m_Name: SoundWave
   m_TagString: Untagged
@@ -31,6 +32,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7816302363635148515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1909806326119469996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018118800014768202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1434665c215dd4796719b71cdde3f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BouncingSegment
+  minHeight: 2
+  maxHeight: 15
+  tempo: 1.5
+  stepInterval: 0.2
+  quietOffset: 2.5
+  values1: {x: 7, y: 0.3, z: 0}
+  values2: {x: 3, y: 7, z: 0}
 --- !u!1 &7735252544345359763
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +196,7 @@ MonoBehaviour:
   soundWave: {fileID: 2018118800014768202}
   length: 10
   soundBar: {fileID: 6325969742200461500, guid: 5b65a27667b90fd42a4b4a43d1ab3f80, type: 3}
+  segments: []
 --- !u!61 &1888908386960542796
 BoxCollider2D:
   m_ObjectHideFlags: 0

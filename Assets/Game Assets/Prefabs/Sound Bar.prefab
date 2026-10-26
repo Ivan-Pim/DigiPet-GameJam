@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5731975994343697907}
   m_Layer: 3
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: BouncePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,11 +149,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5250779646276967923}
   - component: {fileID: 2749212088541738980}
-  - component: {fileID: 3974799064345863618}
-  - component: {fileID: 3601202500661960067}
+  - component: {fileID: 8583205101645208640}
+  - component: {fileID: 4043941500140189276}
   m_Layer: 3
   m_Name: Sound Bar
-  m_TagString: Untagged
+  m_TagString: BouncePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,8 +234,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!70 &3974799064345863618
-CapsuleCollider2D:
+--- !u!61 &8583205101645208640
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -268,10 +268,19 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
---- !u!114 &3601202500661960067
+  m_Offset: {x: 0, y: 0.11317223}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 2.2763448}
+  m_EdgeRadius: 0
+--- !u!114 &4043941500140189276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,6 +289,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6325969742200461500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb1434665c215dd4796719b71cdde3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c9647d53ff6abf4697878db64cfd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  relevantLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  impactSize: {x: 1.8, y: 1}
+  impactForce: 150
+  reporting: 0

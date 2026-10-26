@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
@@ -7,6 +8,8 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
     [SerializeField] private GameObject soundWave;
     [SerializeField] private int length = 10;
     [SerializeField] private GameObject soundBar;
+
+    public GameObject[] segments;
 
     private float offsetX = 5f, offsetY = 0f;
     private float distX = 2.2f;
@@ -18,6 +21,7 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
         isActive = !initialState;
         SwapState();
 
+        Array.Resize(ref segments, length);
         CreateSoundWave(length);
     }
 
@@ -49,6 +53,8 @@ public class BridgeSpeakerScript : MonoBehaviour, IStateDevice
         for (int i = 0; i < length; ++i) {
             GameObject newBar = Instantiate(soundBar, soundWave.transform);
             newBar.transform.SetLocalPositionAndRotation(new Vector3((offsetX + distX * i), offsetY, 0), Quaternion.identity);
+            segments[i] = newBar;
         }
+        soundWave.GetComponent<WaveController>().SetSegments(segments);
     }
 }
