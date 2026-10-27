@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6931343431467225153}
   - component: {fileID: 3176160953752752509}
   - component: {fileID: 7565964401880728602}
+  - component: {fileID: 2022350410139853584}
+  - component: {fileID: 7476318684742427498}
   m_Layer: 6
   m_Name: Worm
   m_TagString: Untagged
@@ -79,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1723091215
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4504677708396900411, guid: eb515cdfbcbdd8342b886ab35f0c93b5, type: 3}
@@ -162,3 +164,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.975031, y: 2.4823859}
   m_EdgeRadius: 0
+--- !u!114 &2022350410139853584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191939919685836465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f0ef2984d7b5b47bebdb2a5691d114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KillPlayer
+--- !u!114 &7476318684742427498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191939919685836465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125e15c9b36b6c14982fe5d1daa9e639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  moveSpeed: 10
+  rayDist: 0.5
+  wormsWalkOnThis:
+    serializedVersion: 2
+    m_Bits: 8
+  reporting: 0
