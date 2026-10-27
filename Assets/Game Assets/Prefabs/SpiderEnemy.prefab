@@ -161,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1345433085771596969}
   - component: {fileID: 1383507046057279547}
+  - component: {fileID: 4710113388376226168}
   m_Layer: 6
   m_Name: Thread
   m_TagString: Untagged
@@ -230,7 +231,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 796779456, guid: de9c98ee0e7f92a48b3501aea8f91b2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -243,6 +244,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &4710113388376226168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4954426101772695673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b66491e887af9547a7e1fc78130c0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  spiderAnchor: {fileID: 7477272325259706671}
+  webAnchor: {x: -0.1, y: 0.7, z: 0}
 --- !u!1 &5015392188106147977
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +270,7 @@ GameObject:
   - component: {fileID: 3803036135713693030}
   - component: {fileID: 677640270679805709}
   - component: {fileID: 6449464064687250610}
+  - component: {fileID: 7076887555793360983}
   m_Layer: 6
   m_Name: Spider
   m_TagString: Untagged
@@ -271,10 +287,11 @@ Transform:
   m_GameObject: {fileID: 5015392188106147977}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -2.65, z: 0}
+  m_LocalPosition: {x: -0.15, y: -2.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7477272325259706671}
   m_Father: {fileID: 3557356415620601911}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3803036135713693030
@@ -324,7 +341,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4725865892313926726, guid: 0866dbc0a675f1a429361ef739143ac6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -385,3 +402,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f0ef2984d7b5b47bebdb2a5691d114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KillPlayer
+--- !u!95 &7076887555793360983
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5015392188106147977}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 997ceed60fb0b0f41b43a9be00602618, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6091835845217852786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7477272325259706671}
+  m_Layer: 6
+  m_Name: Web Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7477272325259706671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6091835845217852786}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6903182478107618169}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

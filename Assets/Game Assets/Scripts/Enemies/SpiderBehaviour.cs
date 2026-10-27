@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpiderBehaviour : MonoBehaviour
 {    
     [SerializeField]private GameObject spiderBody;
-    //private Animator animator;
+    private Animator animator;
 
     [SerializeField] private float castDist = 75f, bumpDist = 0.2f;
     [SerializeField] private Vector2 castSize = new Vector2(5f, 5f);
@@ -25,7 +25,7 @@ public class SpiderBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        //animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         origin = spiderBody.transform.position.y;
         centerToFront = spiderBody.GetComponent<Collider2D>().bounds.extents.y;
     }
@@ -41,7 +41,7 @@ public class SpiderBehaviour : MonoBehaviour
                 RaycastHit2D hit = Physics2D.BoxCast(transform.position, castSize, 0f, Vector2.down, castDist, playersLayer);
                     if (!(hit.collider == null) && hit.transform.CompareTag("Player")) {
                         state = State.Swooping;
-                        //animator.SetBool("Swooping", true);
+                        animator.SetBool("Swooping", true);
                     }
                 
                 break;
@@ -58,7 +58,7 @@ public class SpiderBehaviour : MonoBehaviour
             case State.Swooping:
                 if (Physics2D.Raycast(spiderPosition - new Vector2(0, centerToFront), Vector2.down, bumpDist, obstacleLayer) || (origin - spiderPosition.y >= castDist)) {
                     state = State.Returning;
-                    //animator.SetBool("Swooping", false);
+                    animator.SetBool("Swooping", false);
                 } else {
                     spiderBody.transform.Translate(Vector2.down * descentSpeed * Time.deltaTime);
                 }
@@ -66,8 +66,6 @@ public class SpiderBehaviour : MonoBehaviour
                 break;
         }
     }
-
-
 
     private void Catch() {
         Debug.Log("Spider got her! Climb back up");
