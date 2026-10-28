@@ -1,21 +1,42 @@
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class SpiderBehaviour : MonoBehaviour
-{    
+{
+    #region References & Constants
     [SerializeField]private GameObject spiderBody;
     private Animator animator;
 
+    private float origin;
+    private float centerToFront;
+    #endregion
+
+    #region Dropping parameters
     [SerializeField] private float castDist = 75f, bumpDist = 0.2f;
     [SerializeField] private Vector2 castSize = new Vector2(5f, 5f);
     [SerializeField] private LayerMask playersLayer, obstacleLayer;
-
     [SerializeField] private float descentSpeed = 30f, ascentSpeed = 15f;
-    private float origin;
-    private float centerToFront;
+    #endregion
 
-    enum State {
+    #region Horizontal movement parameters
+    [SerializeField] private bool moving = false;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float allowedDistLeft = 0f, allowedDistRight = 0f;
+    private float leftBorder, rightBorder;
+
+    enum FacingDirection
+    {
+        Left = -1,
+        Right = 1
+    }
+
+    FacingDirection facing = FacingDirection.Right;
+    #endregion
+
+    enum State
+    {
         Idling,
         Swooping,
         Returning
@@ -28,6 +49,11 @@ public class SpiderBehaviour : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         origin = spiderBody.transform.position.y;
         centerToFront = spiderBody.GetComponent<Collider2D>().bounds.extents.y;
+
+        leftBorder = transform.position.x - allowedDistLeft;
+        rightBorder = transform.position.x + allowedDistRight;
+
+        StartTurn();
     }
 
     // Update is called once per frame
@@ -38,6 +64,7 @@ public class SpiderBehaviour : MonoBehaviour
         switch (state)
         {
             case State.Idling:
+                if (moving) Move(moveSpeed, facing, leftBorder, rightBorder);
                 RaycastHit2D hit = Physics2D.BoxCast(transform.position, castSize, 0f, Vector2.down, castDist, playersLayer);
                     if (!(hit.collider == null) && hit.transform.CompareTag("Player")) {
                         state = State.Swooping;
@@ -67,6 +94,35 @@ public class SpiderBehaviour : MonoBehaviour
         }
     }
 
+    private void Move(float moveSpeed, FacingDirection direction, float leftBorder, float rightBorder) {
+        if ((direction == FacingDirection.Left && transform.position.x > leftBorder)
+            || (direction == FacingDirection.Right && transform.position.x < rightBorder)) {
+            transform.Translate(Vector2.right * (int)direction * moveSpeed * Time.deltaTime);
+        } else {
+            Turn();
+        }
+
+    }
+
+    private void Turn()
+    {
+        // flip the sprite for turning, and store the current direction
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+
+        facing = (facing.Equals(FacingDirection.Right)) ? FacingDirection.Left : FacingDirection.Right;
+    }
+
+    private void StartTurn() {
+        if (FacingDirection.Left == facing)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
+
     private void Catch() {
         Debug.Log("Spider got her! Climb back up");
     }
@@ -77,6 +133,14 @@ public class SpiderBehaviour : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(spiderBody.transform.position, castSize);
         Gizmos.DrawWireCube(spiderBody.transform.position - new Vector3(0, castDist), castSize);
+
+        Gizmos.color = Color.black;
+        Gizmos.DrawLine(new Vector2(leftBorder, transform.position.y + 20f), new Vector2(leftBorder, transform.position.y - 20f));
+        Gizmos.DrawLine(new Vector2(rightBorder, transform.position.y + 20f), new Vector2(rightBorder, transform.position.y - 20f));
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(new Vector2(transform.position.x - allowedDistLeft, transform.position.y + 20f), new Vector2(transform.position.x - allowedDistLeft, transform.position.y - 20f));
+        Gizmos.DrawLine(new Vector2(transform.position.x + allowedDistRight, transform.position.y + 20f), new Vector2(transform.position.x + allowedDistRight, transform.position.y - 20f));
     }
     #endregion
 }

@@ -9,7 +9,7 @@ public class WormBehaviour : MonoBehaviour
         Right=1,
         Left=-1,
     }
-    private FacingDirection facing = FacingDirection.Right; // 1 is facing right, -1 is facing left;
+    [SerializeField]private FacingDirection facing = FacingDirection.Right; // 1 is facing right, -1 is facing left;
 
     private Collider2D collider;
     [SerializeField] private float rayDist = 0.2f;
@@ -21,7 +21,8 @@ public class WormBehaviour : MonoBehaviour
     void Start()
     {
         collider = GetComponent<Collider2D>();
-        if (facing.Equals(FacingDirection.Left) && transform.localScale.x > 0) Turn();
+        StartTurn();
+
     }
 
     // Update is called once per frame
@@ -48,7 +49,15 @@ public class WormBehaviour : MonoBehaviour
 
         facing = (facing.Equals(FacingDirection.Right)) ? FacingDirection.Left : FacingDirection.Right;
     }
-
+    private void StartTurn()
+    {
+        if (FacingDirection.Left == facing)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
     #region Debug methods
     #endregion
 }

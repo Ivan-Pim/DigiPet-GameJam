@@ -151,6 +151,9 @@ MonoBehaviour:
     m_Bits: 136
   descentSpeed: 30
   ascentSpeed: 15
+  moveSpeed: 5
+  allowedDistLeft: 0
+  allowedDistRight: 0
 --- !u!1 &4954426101772695673
 GameObject:
   m_ObjectHideFlags: 0
