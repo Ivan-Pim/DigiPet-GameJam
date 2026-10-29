@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class Puzzle15 : MonoBehaviour
 {
     public PuzzleData Data;
+    private SpriteRenderer bgFile;
 
     public int xSize = 4, ySize = 4;
     public float tileX = 5, tileY = 5;
@@ -16,6 +17,7 @@ public class Puzzle15 : MonoBehaviour
     public int emptyX, emptyY;
 
     public float appearTime = 0.25f;
+    [SerializeField] private float paddingX = 1, paddingY = 1;
 
     public void SetEmptyCoords(int coordX, int coordY)
     {
@@ -27,10 +29,12 @@ public class Puzzle15 : MonoBehaviour
     {
         thePuzzle = new TileInfo[xSize * ySize - 1];
         numArray = new int[xSize * ySize - 1];
+        bgFile = GetComponent<SpriteRenderer>();
 
         tileX = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.x;
         tileY = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.y;
         topleftEdge = new Vector2(-tileX * xSize / 2, tileY * ySize / 2);
+        SetBorder(tileX * xSize, tileY * ySize, paddingX, paddingY);
 
         RandomizeTiles();
         for (int i = 0; i < xSize * ySize - 1; ++i)
@@ -104,4 +108,12 @@ public class Puzzle15 : MonoBehaviour
         lastTile.FinishGame();
         Debug.Log("You Win!");
     }
+
+    #region Visual fluff
+    private void SetBorder(float width, float height, float paddingX, float paddingY) {
+        bgFile.size = new Vector2(width + paddingX * 2, height + paddingY * 2);
+    }
+
+    #endregion
+
 }
