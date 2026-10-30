@@ -11,4 +11,16 @@ public class HitDetection : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collider2D other = collision.collider;
+        if (other.CompareTag("Player"))
+        {
+            if (other.GetComponent<PlayerMovement>().isInGroundPound)
+            {
+                GetComponentInParent<IHittable>().OnHit();
+            }
+        }
+    }
+
 }

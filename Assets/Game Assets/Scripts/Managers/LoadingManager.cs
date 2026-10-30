@@ -1,5 +1,7 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LoadingManager : Singleton<LoadingManager>
@@ -8,14 +10,24 @@ public class LoadingManager : Singleton<LoadingManager>
 
     public event Action OnUnload;
 
-    public void LoadScene(int sceneID) {
-        SceneManager.LoadSceneAsync(sceneID, LoadSceneMode.Additive);
+    #region Loading overloads
+
+    override protected void Awake()
+    {
+        base.Awake();
+        OnUnload += Test;
     }
 
-    public void LoadScene(string sceneName) {
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-    }
+    public async Task LoadScene(int sceneID, int unload) {
+        AsyncOperation loading = SceneManager.LoadSceneAsync(sceneID, LoadSceneMode.Additive);
+        LevelManager.Instance.InitializeLevel(sceneID);
+        await loading;
+        if (unload != -1) UnloadScene(unload); 
 
+    }
+    #endregion
+
+    #region Unloading methods
     public void UnloadScene(int sceneID) {
         OnUnload.Invoke();
         SceneManager.UnloadSceneAsync(sceneID);
@@ -25,5 +37,11 @@ public class LoadingManager : Singleton<LoadingManager>
     {
         OnUnload.Invoke();
         SceneManager.UnloadSceneAsync(sceneName);
+    }
+    #endregion
+
+    public void Test()
+    {
+        Debug.Log("Not doing nothing");
     }
 }

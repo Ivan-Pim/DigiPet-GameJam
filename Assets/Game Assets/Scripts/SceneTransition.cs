@@ -4,25 +4,35 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour, IHittable
 {
-    public string sceneToLoad;
+    public int sceneToLoad = -1;
+    public int unloadedScene;
 
     public void Awake()
     {
-        if (sceneToLoad == null) {
+        if (sceneToLoad == -1) {
             int nextID = gameObject.scene.buildIndex + 1;
-            sceneToLoad = SceneManager.GetSceneByBuildIndex(nextID).name;
+            sceneToLoad = nextID;
         }
-        
+
+        if (unloadedScene != -1) { 
+            unloadedScene = gameObject.scene.buildIndex;
+        }
     }
 
     public void OnHit()
     {
-        LoadFunc(sceneToLoad);
+        LoadFunc(sceneToLoad, unloadedScene);
     }
 
-    public void LoadFunc(string name, bool unload = true)
+    public void LoadFunc(int index, int unloadingIndex) // set unloading as -1 to not unload
     {
-        LoadingManager.Instance.LoadScene(name);
-        if (unload) LoadingManager.Instance.UnloadScene(gameObject.scene.name);
+        LoadingManager.Instance.LoadScene(index, unloadingIndex);
     }
+
+    public void LoadFunc(string name, int unloadingIndex)
+    {
+        LoadFunc(SceneManager.GetSceneByName(name).buildIndex, unloadingIndex);
+    }
+
+
 }

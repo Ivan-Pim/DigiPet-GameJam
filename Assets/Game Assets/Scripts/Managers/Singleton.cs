@@ -6,7 +6,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     public static T Instance {  get { return _instance; } }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (_instance == null)
         {
@@ -18,5 +18,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             Debug.LogWarning("Multiple instances of a singleton in the scene!");
             Destroy(this);
         }
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (_instance == this) _instance = null;
     }
 }

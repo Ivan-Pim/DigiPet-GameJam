@@ -1,16 +1,41 @@
 using UnityEngine;
 
-public class BGMManager : MonoBehaviour
+public enum Music {
+    None = -1,
+    Desktop,
+    SoundLVL,
+    CinemaLVL,
+    Minigame,
+    WhiteNoise
+}
+
+[RequireComponent(typeof(AudioSource))]
+public class BGMManager : Singleton<BGMManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    [SerializeField] private AudioClip[] bgmList;
+    private AudioSource bgmSource;
+
+    override protected void Awake()
     {
-        
+        base.Awake();
+        bgmSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void SwapBGM(Music track) {
+        AudioClip newClip = bgmList[(int)track];
+        if (bgmSource.clip != newClip)
+        {        
+            bgmSource.clip = newClip;
+            bgmSource.Play();
+        }
+
+    }
+
+    public void UpdateVolume(float _volume) {
+        bgmSource.volume = _volume;
+    }
+    public void ToggleMute(bool isMuted) {
+        bgmSource.mute = isMuted;
     }
 }
