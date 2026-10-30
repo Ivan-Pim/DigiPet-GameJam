@@ -1,16 +1,37 @@
+using UnityEditor;
 using UnityEngine;
 
-public class PauseManager : MonoBehaviour
+public class PauseManager : Singleton<PauseManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    bool isPaused = false;
+    [SerializeField] GameObject pauseScreen;
+
+    override protected void Awake()
     {
-        
+        base.Awake();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Pause()
     {
-        
+        isPaused = true;
+        Time.timeScale = 0;
+        pauseScreen.SetActive(true);
+    }
+
+    public void Unpause()
+    {
+        isPaused = false;
+        Time.timeScale = 1;
+        pauseScreen.SetActive(false);
+    }
+
+    public void TogglePause()
+    {
+        TogglePause(!isPaused);
+    }
+
+    public void TogglePause(bool willPause) {
+        if (willPause) Pause();
+        else Unpause();
     }
 }

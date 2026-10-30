@@ -55,5 +55,6 @@ public class WaveControls : MonoBehaviour
 
         // this is also debug!!!
         GetComponent<SceneTransition>().OnHit();
+        this.enabled = false;
     }
 }

@@ -18,11 +18,16 @@ public class LoadingManager : Singleton<LoadingManager>
         OnUnload += Test;
     }
 
-    public async Task LoadScene(int sceneID, int unload) {
-        AsyncOperation loading = SceneManager.LoadSceneAsync(sceneID, LoadSceneMode.Additive);
-        LevelManager.Instance.InitializeLevel(sceneID);
-        await loading;
-        if (unload != -1) UnloadScene(unload); 
+    public void LoadScene(int sceneID, bool additive) {
+        if (additive)
+        {
+            SceneManager.LoadSceneAsync(sceneID, LoadSceneMode.Additive);
+            LevelManager.Instance.InitializeLevel(sceneID);
+        } else
+        {
+            SceneManager.LoadSceneAsync(sceneID, LoadSceneMode.Single);
+            LevelManager.Instance.InitializeLevel(sceneID);
+        }
 
     }
     #endregion

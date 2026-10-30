@@ -7,6 +7,8 @@ public class Puzzle15 : MonoBehaviour
     public PuzzleData Data;
     private SpriteRenderer bgFile;
 
+    [SerializeField] private GameObject exitButton;
+
     public int xSize = 4, ySize = 4;
     public float tileX = 5, tileY = 5;
     public Vector2 topleftEdge;
@@ -106,7 +108,8 @@ public class Puzzle15 : MonoBehaviour
         TileInfo lastTile = CreateTile(xSize - 1, ySize - 1, xSize * ySize);
         lastTile.AppearTile(appearTime);
         lastTile.FinishGame();
-        Debug.Log("You Win!");
+
+        exitButton.SetActive(true);
     }
 
     #region Visual fluff

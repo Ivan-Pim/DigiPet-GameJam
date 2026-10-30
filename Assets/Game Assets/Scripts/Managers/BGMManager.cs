@@ -1,3 +1,4 @@
+using System.Xml;
 using UnityEngine;
 
 public enum Music {
@@ -20,6 +21,8 @@ public class BGMManager : Singleton<BGMManager>
     {
         base.Awake();
         bgmSource = GetComponent<AudioSource>();
+
+        ReadSettings();
     }
 
     public void SwapBGM(Music track) {
@@ -33,9 +36,19 @@ public class BGMManager : Singleton<BGMManager>
     }
 
     public void UpdateVolume(float _volume) {
+        PlayerPrefs.SetFloat("Music Volume", _volume);
         bgmSource.volume = _volume;
     }
     public void ToggleMute(bool isMuted) {
+        int toStore = isMuted ? 1 : 0;
+        PlayerPrefs.SetInt("Music Mute", toStore);
+        bgmSource.mute = isMuted;
+    }
+
+    private void ReadSettings()
+    {
+        bgmSource.volume = PlayerPrefs.GetFloat("Music Volume", 1.00f);
+        bool isMuted = (PlayerPrefs.GetInt("Music Mute", 0) == 0) ? false : true;
         bgmSource.mute = isMuted;
     }
 }
