@@ -4,12 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour, IHittable
 {
-    public int sceneToLoad = -1;
+    public string sceneToLoad;
 
     public void Awake()
     {
-        if (sceneToLoad == -1) {
-            sceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        if (sceneToLoad == null) {
+            int nextID = gameObject.scene.buildIndex + 1;
+            sceneToLoad = SceneManager.GetSceneByBuildIndex(nextID).name;
         }
         
     }
@@ -19,8 +20,9 @@ public class SceneTransition : MonoBehaviour, IHittable
         LoadFunc(sceneToLoad);
     }
 
-    public void LoadFunc(int id)
+    public void LoadFunc(string name, bool unload = true)
     {
-        SceneManager.LoadScene(id);
+        LoadingManager.Instance.LoadScene(name);
+        if (unload) LoadingManager.Instance.UnloadScene(gameObject.scene.name);
     }
 }

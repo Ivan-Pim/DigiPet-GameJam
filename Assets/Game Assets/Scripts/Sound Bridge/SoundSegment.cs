@@ -29,7 +29,6 @@ public class SoundSegment : MonoBehaviour
         {
             rising = false;
             foreach (Collider2D hit in Physics2D.OverlapBoxAll(top, impactSize, 0, relevantLayers)) {
-                Debug.Log(hit.name);
                 if (hit != null && hit.CompareTag("Player"))
                 {
                     hit.attachedRigidbody.AddForceY(impactForce, ForceMode2D.Impulse);
