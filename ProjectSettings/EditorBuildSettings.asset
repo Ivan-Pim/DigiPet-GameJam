@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Game Assets/Scenes/Desktop Scene.unity
     guid: edda7c14e5e1cbf44ad61a44866a76ca
   - enabled: 1
-    path: Assets/Game Assets/Scenes/SoundLevelScene.unity
+    path: Assets/Game Assets/Scenes/EscapeSoundLevelScene_Final.unity
     guid: 53783f3f12f467d4ea879b8f9a96a9f5
   - enabled: 1
     path: Assets/Game Assets/Scenes/RadioMinigame.unity
